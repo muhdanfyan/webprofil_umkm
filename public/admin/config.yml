@@ -1,0 +1,22 @@
+local_backend: true
+backend:
+  name: git-gateway
+  branch: main # Use the main branch for production
+
+media_folder: "public/images/uploads" # Folder where user uploaded files should go
+public_folder: "/images/uploads" # The src attribute for uploaded images
+
+collections:
+  - name: "blog" # Used in routes, e.g., /admin/collections/blog
+    label: "Blog" # Used in the UI
+    folder: "src/content/blog" # The path to the folder where the documents are stored
+    create: true # Allow users to create new documents in this collection
+    slug: "{{slug}}" # Filename template, e.g., title.md
+    summary: "{{judul}}"
+    view_style: "grid"
+    fields: # The fields for each document, usually in front matter
+      - { label: "Judul", name: "judul", widget: "string" }
+      - { label: "Tanggal", name: "tanggal", widget: "datetime" }
+      - { label: "Kategori", name: "kategori", widget: "string" }
+      - { label: "Gambar", name: "image", widget: "image" }
+      - { label: "Body", name: "body", widget: "markdown" }

@@ -1,0 +1,79 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import BlogCard from '../../components/BlogCard.astro';
+import { getCollection } from 'astro:content';
+
+const allBlogPosts = await getCollection('blog');
+const sortedPosts = allBlogPosts.sort(
+  (a, b) => b.data.tanggal.getTime() - a.data.tanggal.getTime()
+);
+---
+
+<Layout title="Blog" description="Artikel dan tips seputar kesehatan dan perawatan">
+  <section class="py-20">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <h1 class="text-5xl font-bold text-gray-900 mb-4">Blog</h1>
+        <p class="text-xl text-gray-600">
+          Artikel dan tips seputar kesehatan dan perawatan
+        </p>
+      </div>
+
+      {sortedPosts.length > 0 ? (
+        <div class="space-y-12">
+          <!-- Featured Post (The Latest One) -->
+          <div class="animate-fadeIn">
+            <a href={`/blog/${sortedPosts[0].slug}`} class="group block relative overflow-hidden rounded-3xl bg-white shadow-xl hover:shadow-2xl transition-all duration-500 border border-gray-100">
+              <div class="grid lg:grid-cols-2 gap-0 overflow-hidden">
+                <div class="relative h-64 lg:h-[400px] overflow-hidden">
+                  <img 
+                    src={sortedPosts[0].data.image} 
+                    alt={sortedPosts[0].data.judul}
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  />
+                  <div class="absolute top-6 left-6">
+                    <span class="px-4 py-2 bg-primary-500 text-white text-xs font-bold rounded-xl shadow-lg">
+                      Terbaru
+                    </span>
+                  </div>
+                </div>
+                <div class="p-8 lg:p-12 flex flex-col justify-center">
+                  <span class="text-primary-600 font-bold text-sm mb-4 block">{sortedPosts[0].data.kategori}</span>
+                  <h2 class="text-2xl lg:text-4xl font-bold text-gray-900 mb-6 group-hover:text-primary-600 transition-colors">
+                    {sortedPosts[0].data.judul}
+                  </h2>
+                  <p class="text-gray-600 mb-8 line-clamp-3 text-lg leading-relaxed">
+                    Pelajari lebih lanjut mengenai {sortedPosts[0].data.judul.toLowerCase()} dalam artikel edukatif kami yang terbaru.
+                  </p>
+                  <div class="flex items-center gap-3 text-primary-600 font-bold">
+                    <span>Baca Selengkapnya</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 group-hover:translate-x-2 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <!-- Other Posts Grid -->
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 animate-fadeInUp">
+            {sortedPosts.slice(1).map((post) => (
+              <BlogCard
+                title={post.data.judul}
+                date={post.data.tanggal}
+                category={post.data.kategori}
+                image={post.data.image}
+                slug={post.slug}
+              />
+            ))}
+          </div>
+        </div>
+      ) : (
+        <div class="text-center py-20">
+          <p class="text-xl text-gray-600">Belum ada artikel yang tersedia.</p>
+        </div>
+      )}
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,147 @@
+---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { siteInfo } from "../config";
+
+interface Props {
+	title?: string;
+	description?: string;
+	ogImage?: string;
+}
+
+const {
+	title = siteInfo.name,
+	description = siteInfo.description,
+	ogImage = "/og-image.png",
+} = Astro.props;
+
+const fullTitle =
+	title === siteInfo.name ? title : `${title} | ${siteInfo.name}`;
+
+// Get the site URL for absolute paths
+const siteUrl = Astro.url.origin || "https://bearboysunat.com";
+const absoluteOgImage = `${siteUrl}${ogImage}`;
+---
+
+<!doctype html>
+<html lang="id">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/png" href="/favicon bearboy.png" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="description" content={description} />
+		<title>{fullTitle}</title>
+
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={Astro.url.href} />
+		<meta property="og:title" content={fullTitle} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={absoluteOgImage} />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta property="og:site_name" content={siteInfo.name} />
+		<meta property="og:locale" content="id_ID" />
+
+		<!-- Twitter -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:url" content={Astro.url.href} />
+		<meta name="twitter:title" content={fullTitle} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={absoluteOgImage} />
+
+		<!-- Additional SEO -->
+		<meta name="robots" content="index, follow" />
+		<meta name="author" content={siteInfo.name} />
+		<link rel="canonical" href={Astro.url.href} />
+
+		<!-- Theme Color -->
+		<meta name="theme-color" content="#2ECC9B" />
+		<meta name="msapplication-TileColor" content="#2ECC9B" />
+		<script
+			src="https://unpkg.com/netlify-identity-widget/build/netlify-identity-widget.js"
+		></script>
+	</head>
+	<body class="min-h-screen flex flex-col bg-white">
+		<Header />
+		<main class="flex-grow">
+			<slot />
+		</main>
+		<Footer />
+		<script is:inline>
+			function initNetlifyIdentity() {
+				if (window.netlifyIdentity) {
+					console.log("Netlify Identity library loaded.");
+					window.netlifyIdentity.on("init", (user) => {
+						console.log("Netlify Identity init event fired", {
+							user,
+						});
+
+						// Update Footer Button Text if Logged In
+						if (user) {
+							const loginBtn =
+								document.getElementById("cms-login-btn");
+							if (loginBtn) {
+								loginBtn.innerHTML = `
+									<span class="w-1.5 h-1.5 bg-primary-500 rounded-full opacity-100 transition-opacity"></span>
+									Buka Dashboard
+								`;
+								loginBtn.onclick = () => {
+									window.location.href = "/admin/";
+								};
+							}
+						}
+
+						if (!user) {
+							window.netlifyIdentity.on("login", () => {
+								console.log(
+									"Login detected, redirecting to /admin/",
+								);
+								document.location.href = "/admin/";
+							});
+						}
+					});
+
+					// Detect tokens in hash
+					const hash = window.location.hash;
+					if (
+						hash &&
+						(hash.includes("_token=") || hash.includes("error="))
+					) {
+						console.log(
+							"Identity token detected, opening widget...",
+						);
+						window.netlifyIdentity.open();
+					}
+				} else {
+					// Wait for the script to load
+					setTimeout(initNetlifyIdentity, 100);
+				}
+			}
+
+			// Start the detection
+			initNetlifyIdentity();
+
+			// Also handle the footer button here if it exists
+			document.addEventListener("click", (e) => {
+				const target = e.target;
+				// @ts-ignore
+				if (
+					target &&
+					(target.id === "cms-login-btn" ||
+						target.closest("#cms-login-btn"))
+				) {
+					if (window.netlifyIdentity) {
+						// @ts-ignore
+						window.netlifyIdentity.open();
+					} else {
+						alert(
+							"Sistem login sedang memuat, silakan tunggu sebentar...",
+						);
+					}
+				}
+			});
+		</script>
+	</body>
+</html>
