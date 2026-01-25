@@ -16,13 +16,80 @@ contact:
 location:
   address: "Jl. Malioboro No. 123, Yogyakarta, Indonesia"
   map_embed_url: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3952.924296720498!2d110.36367377589635!3d-7.792500477341381!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a57891781d451%3A0x63345f1b1424687d!2sJl.%20Malioboro%2C%20Yogyakarta!5e0!3m2!1sid!2sid!4v1706180123456!5m2!1sid!2sid"
+hero:
+  title: "Solusi Kebutuhan Anda dalam Satu Wadah"
+  subtitle: "Kami menghadirkan produk-produk pilihan dengan kualitas terjamin untuk mendukung aktivitas harian Anda. Nikmati kemudahan berbelanja dengan pelayanan yang ramah dan profesional."
+  image: "/logo-wiyasa.png"
 advantages:
   - title: "Produk Original"
     description: "Semua produk yang kami jual dijamin keasliannya dan telah melalui proses QC yang ketat."
     icon: "user-check"
-  - title: "Pengiriman Instan"
-    description: "Pesanan Anda akan langsung diproses dan dikirim pada hari yang sama untuk area tertentu."
+  - title: "Pengiriman Cepat"
+    description: "Pesanan Anda akan langsung diproses dan dikirim secepat mungkin dengan mitra terpercaya."
     icon: "zap"
   - title: "Layanan 24/7"
-    description: "Tim CS kami siap membantu menjawab pertanyaan Anda kapan saja melalui berbagai saluran kontak."
+    description: "Tim support kami siap membantu menjawab pertanyaan Anda kapan saja melalui berbagai saluran."
     icon: "heart"
+services:
+  - title: "Produk Retail"
+    description: "Menyediakan berbagai macam produk kebutuhan harian dengan harga bersaing dan kualitas terbaik."
+    image: "/logo-wiyasa.png"
+  - title: "Layanan Konsultasi"
+    description: "Bantu Anda memilih produk yang paling sesuai dengan kebutuhan spesifik Anda."
+    image: "/logo-wiyasa.png"
+  - title: "Pengadaan Barang"
+    description: "Melayani pengadaan kebutuhan kantor atau instansi dalam jumlah besar dengan proses transparan."
+    image: "/logo-wiyasa.png"
+steps:
+  title: "Cara Memesan di Wiyasa"
+  items:
+    - title: "Pilih Produk"
+      description: "Jelajahi galeri produk kami atau konsultasikan kebutuhan Anda pada admin kami."
+    - title: "Konfirmasi Pesanan"
+      description: "Segera konfirmasi pesanan Anda melalui WhatsApp untuk pengecekan stok."
+    - title: "Pembayaran & Pengiriman"
+      description: "Lakukan pembayaran dan pesanan Anda akan segera kami kirim ke alamat tujuan."
+faqs:
+  - question: "Apakah produk Wiyasa memiliki garansi?"
+    answer: "Ya, kami menjamin keaslian produk. Untuk barang tertentu, tersedia garansi retur jika terjadi kerusakan saat pengiriman."
+  - question: "Berapa lama waktu pengirimannya?"
+    answer: "Untuk dalam kota biasanya 1-2 hari kerja, sedangkan luar kota tergantung jasa pengiriman yang dipilih (biasanya 3-5 hari)."
+  - question: "Bisa bayar di tempat (COD)?"
+    answer: "Saat ini kami melayani COD khusus untuk wilayah Yogyakarta dengan syarat dan ketentuan berlaku."
+tips:
+  - title: "Cara Belanja Aman"
+    points:
+      - "Pastikan nomor WhatsApp admin sudah benar (cek di kontak)."
+      - "Gunakan metode pembayaran resmi yang disediakan."
+      - "Simpan bukti transfer untuk konfirmasi pesanan."
+  - title: "Perawatan Produk"
+    points:
+      - "Simpan produk di tempat yang kering dan sejuk."
+      - "Ikuti petunjuk penggunaan yang ada pada kemasan."
+      - "Hubungi tim support jika butuh panduan penggunaan."
+stats:
+  - label: "Pelanggan Puas"
+    value: "5000+"
+    icon: "users"
+  - label: "Produk Pilihan"
+    value: "100+"
+    icon: "star"
+  - label: "Kota Terjangkau"
+    value: "50+"
+    icon: "calendar"
+  - label: "Respon Cepat"
+    value: "24/7"
+    icon: "clock"
+testimonials:
+  - name: "Budi Santoso"
+    text: "Pelayanannya sangat cepat dan produknya original. Sangat direkomendasikan untuk belanja di sini!"
+    location: "Jakarta"
+    rating: 5
+  - name: "Ani Lestari"
+    text: "Terima kasih Wiyasa, akhirnya saya menemukan produk yang sudah lama saya cari dengan harga terjangkau."
+    location: "Yogyakarta"
+    rating: 5
+  - name: "Siti Aminah"
+    text: "Packing sangat rapi dan aman. Barangnya sampai tepat waktu tanpa ada cacat sedikitpun."
+    location: "Surabaya"
+    rating: 5
