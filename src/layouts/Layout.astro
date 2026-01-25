@@ -13,8 +13,9 @@ interface Props {
 }
 
 const {
-	title = identity?.name || "Bear Boy Sunat",
-	description = identity?.description || "Layanan sunat profesional",
+	title = identity?.name || "Wiyasa Official",
+	description = identity?.description ||
+		"Penyedia Produk Berkualitas & Terpercaya",
 	ogImage = "/og-image.png",
 } = Astro.props;
 
@@ -22,7 +23,7 @@ const fullTitle =
 	title === identity?.name ? title : `${title} | ${identity?.name}`;
 
 // Get the site URL for absolute paths
-const siteUrl = Astro.url.origin || "https://bearboysunat.com";
+const siteUrl = Astro.url.origin || "https://wiyasa.site";
 const absoluteOgImage = `${siteUrl}${ogImage}`;
 
 const primaryColor = identity?.theme_color?.primary || "#2ECC9B";
