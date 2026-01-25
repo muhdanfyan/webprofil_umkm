@@ -87,7 +87,7 @@ collections:
             widget: "list"
             fields:
               - { label: "Judul Tips", name: "title", widget: "string" }
-              - { label: "Poin-poin", name: "points", widget: "list", field: { label: "Isi Poin", widget: "string" } }
+              - { label: "Poin-poin", name: "points", widget: "list", field: { label: "Isi Poin", name: "item", widget: "string" } }
           - label: "Statistik"
             name: "stats"
             widget: "list"
