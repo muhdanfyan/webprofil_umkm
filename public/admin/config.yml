@@ -35,11 +35,22 @@ collections:
               - { label: "Nama Kontak", name: "name", widget: "string" }
               - { label: "Telepon", name: "phone", widget: "string" }
               - { label: "WhatsApp Link", name: "whatsapp", widget: "string" }
+              - { label: "Email", name: "email", widget: "string", required: false }
+              - { label: "Instagram Link", name: "instagram", widget: "string", required: false }
+              - { label: "Facebook Link", name: "facebook", widget: "string", required: false }
           - label: "Lokasi"
             name: "location"
             widget: "object"
             fields:
-              - { label: "URL Google Maps", name: "map_url", widget: "string" }
+              - { label: "Alamat Lengkap", name: "address", widget: "text", required: false }
+              - { label: "URL Embed Google Maps", name: "map_embed_url", widget: "string" }
+          - label: "Keunggulan"
+            name: "advantages"
+            widget: "list"
+            fields:
+              - { label: "Judul", name: "title", widget: "string" }
+              - { label: "Deskripsi", name: "description", widget: "text" }
+              - { label: "Icon (Nama Lucide/Heroicon)", name: "icon", widget: "string" }
 
   - name: "blog" # Used in routes, e.g., /admin/collections/blog
     label: "Blog" # Used in the UI

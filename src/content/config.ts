@@ -26,10 +26,19 @@ const identity = defineCollection({
       name: z.string(),
       phone: z.string(),
       whatsapp: z.string(),
+      email: z.string().optional(),
+      instagram: z.string().optional(),
+      facebook: z.string().optional(),
     }),
     location: z.object({
-      map_url: z.string(),
+      address: z.string().optional(),
+      map_embed_url: z.string(),
     }),
+    advantages: z.array(z.object({
+      title: z.string(),
+      description: z.string(),
+      icon: z.string(),
+    })).optional(),
   }),
 });
 
