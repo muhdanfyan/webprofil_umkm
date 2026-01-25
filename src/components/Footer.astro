@@ -1,7 +1,9 @@
----
-import { siteInfo } from "../config";
+import { getEntry } from 'astro:content';
+
+const identityEntry = await getEntry('identity', 'settings');
+const identity = identityEntry?.data;
+
 const currentYear = new Date().getFullYear();
----
 
 <footer class="bg-gray-900 text-white relative overflow-hidden">
   <!-- Top Accent Line -->
@@ -25,16 +27,14 @@ const currentYear = new Date().getFullYear();
       <!-- Brand Section -->
       <div class="md:col-span-2">
         <a href="/" class="inline-block mb-6">
-          <img src="/logo bearboy.png" alt="Bear Boy Sunat" class="h-16" />
+          <img src={identity?.logo || "/logo bearboy.png"} alt={identity?.name || "Bear Boy Sunat"} class="h-16" />
         </a>
         <p class="text-gray-400 leading-relaxed mb-6 max-w-md">
-          Layanan sunat modern, nyaman, dan aman dengan tim medis berpengalaman
-          dan tersertifikasi. Kami berkomitmen memberikan pengalaman terbaik
-          bagi setiap pasien.
+          {identity?.description}
         </p>
         <div class="flex items-center gap-4">
           <a
-            href={siteInfo.contact.whatsapp}
+            href={identity?.contact?.whatsapp || "#"}
             target="_blank"
             rel="noopener noreferrer"
             class="w-10 h-10 bg-white/10 hover:bg-primary-500 rounded-xl flex items-center justify-center transition-all duration-300 group"
@@ -93,7 +93,7 @@ const currentYear = new Date().getFullYear();
             </div>
             <div>
               <p class="text-gray-400 text-sm">Nama</p>
-              <p class="text-white font-medium">{siteInfo.contact.name}</p>
+              <p class="text-white font-medium">{identity?.contact?.name}</p>
             </div>
           </li>
           <li class="flex items-start gap-3">
@@ -117,12 +117,12 @@ const currentYear = new Date().getFullYear();
             </div>
             <div>
               <p class="text-gray-400 text-sm">Telepon</p>
-              <p class="text-white font-medium">{siteInfo.contact.phone}</p>
+              <p class="text-white font-medium">{identity?.contact?.phone}</p>
             </div>
           </li>
           <li>
             <a
-              href={siteInfo.contact.whatsapp}
+              href={identity?.contact?.whatsapp || "#"}
               target="_blank"
               rel="noopener noreferrer"
               class="inline-flex items-center gap-2 text-primary-400 hover:text-primary-300 transition-colors font-medium"
@@ -184,7 +184,7 @@ const currentYear = new Date().getFullYear();
 
         <!-- CTA Button -->
         <a
-          href={siteInfo.contact.whatsapp}
+          href={identity?.contact?.whatsapp || "#"}
           target="_blank"
           rel="noopener noreferrer"
           class="inline-flex items-center gap-2 bg-primary-500 text-white px-5 py-2.5 rounded-xl font-semibold hover:bg-primary-600 transition-all duration-300 mt-6 text-sm"
@@ -212,7 +212,7 @@ const currentYear = new Date().getFullYear();
       class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4"
     >
       <p class="text-gray-500 text-sm">
-        &copy; {currentYear} Bear Boy Sunat. Semua hak dilindungi.
+        &copy; {currentYear} {identity?.name || "Bear Boy Sunat"}. Semua hak dilindungi.
       </p>
       <div class="flex items-center gap-2">
         <span class="text-gray-500 text-sm">Dibuat dengan</span>

@@ -1,7 +1,9 @@
----
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import { siteInfo } from "../config";
+import { getEntry } from 'astro:content';
+
+const identityEntry = await getEntry('identity', 'settings');
+const identity = identityEntry?.data;
 
 interface Props {
 	title?: string;
@@ -10,17 +12,20 @@ interface Props {
 }
 
 const {
-	title = siteInfo.name,
-	description = siteInfo.description,
+	title = identity?.name || "Bear Boy Sunat",
+	description = identity?.description || "Layanan sunat profesional",
 	ogImage = "/og-image.png",
 } = Astro.props;
 
 const fullTitle =
-	title === siteInfo.name ? title : `${title} | ${siteInfo.name}`;
+	title === identity?.name ? title : `${title} | ${identity?.name}`;
 
 // Get the site URL for absolute paths
 const siteUrl = Astro.url.origin || "https://bearboysunat.com";
 const absoluteOgImage = `${siteUrl}${ogImage}`;
+
+const primaryColor = identity?.theme_color?.primary || "#2ECC9B";
+const accentColor = identity?.theme_color?.accent || "#EF4444";
 ---
 
 <!doctype html>
@@ -28,7 +33,7 @@ const absoluteOgImage = `${siteUrl}${ogImage}`;
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/png" href="/favicon bearboy.png" />
+		<link rel="icon" type="image/png" href={identity?.favicon || "/favicon bearboy.png"} />
 		<meta name="generator" content={Astro.generator} />
 		<meta name="description" content={description} />
 		<title>{fullTitle}</title>
@@ -41,7 +46,7 @@ const absoluteOgImage = `${siteUrl}${ogImage}`;
 		<meta property="og:image" content={absoluteOgImage} />
 		<meta property="og:image:width" content="1200" />
 		<meta property="og:image:height" content="630" />
-		<meta property="og:site_name" content={siteInfo.name} />
+		<meta property="og:site_name" content={identity?.name} />
 		<meta property="og:locale" content="id_ID" />
 
 		<!-- Twitter -->
@@ -53,12 +58,19 @@ const absoluteOgImage = `${siteUrl}${ogImage}`;
 
 		<!-- Additional SEO -->
 		<meta name="robots" content="index, follow" />
-		<meta name="author" content={siteInfo.name} />
+		<meta name="author" content={identity?.name} />
 		<link rel="canonical" href={Astro.url.href} />
 
 		<!-- Theme Color -->
-		<meta name="theme-color" content="#2ECC9B" />
-		<meta name="msapplication-TileColor" content="#2ECC9B" />
+		<meta name="theme-color" content={primaryColor} />
+		<meta name="msapplication-TileColor" content={primaryColor} />
+
+		<style define:vars={{ primaryColor, accentColor }}>
+			:root {
+				--primary-base: var(--primaryColor);
+				--accent-base: var(--accentColor);
+			}
+		</style>
 		<script
 			src="https://unpkg.com/netlify-identity-widget/build/netlify-identity-widget.js"
 		></script>

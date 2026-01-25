@@ -19,20 +19,6 @@ export const services = [
   }
 ];
 
-export const siteInfo = {
-  name: 'Bear Boy Sunat',
-  tagline: 'Sunat Modern, Nyaman, dan Aman',
-  description: 'Layanan sunat profesional dengan metode modern, ditangani oleh tim medis berpengalaman dan tersertifikasi. Kami mengutamakan kenyamanan, keamanan, dan hasil terbaik untuk Anda.',
-  contact: {
-    name: 'Bachtiar',
-    phone: '+62 853-4105-3011',
-    whatsapp: 'https://wa.me/6285341053011'
-  },
-  location: {
-    mapUrl: 'https://maps.app.goo.gl/NAmD5nsi6eVc9bKEA'
-  }
-};
-
 // Proses/Alur Sunat
 export const processSteps = [
   {

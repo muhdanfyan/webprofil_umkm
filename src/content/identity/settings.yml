@@ -1,0 +1,14 @@
+name: "Bear Boy Sunat"
+tagline: "Sunat Modern, Nyaman, dan Aman"
+description: "Layanan sunat profesional dengan metode modern, ditangani oleh tim medis berpengalaman dan tersertifikasi. Kami mengutamakan kenyamanan, keamanan, dan hasil terbaik untuk Anda."
+logo: "/logo bearboy.png"
+favicon: "/favicon bearboy.png"
+theme_color:
+  primary: "#2ECC9B"
+  accent: "#EF4444"
+contact:
+  name: "Bachtiar"
+  phone: "+62 853-4105-3011"
+  whatsapp: "https://wa.me/6285341053011"
+location:
+  map_url: "https://maps.app.goo.gl/NAmD5nsi6eVc9bKEA"

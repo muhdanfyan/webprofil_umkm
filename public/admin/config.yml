@@ -7,6 +7,40 @@ media_folder: "public/images/uploads" # Folder where user uploaded files should 
 public_folder: "/images/uploads" # The src attribute for uploaded images
 
 collections:
+  - name: "identity"
+    label: "Identitas Bisnis"
+    delete: false
+    editor:
+      preview: false
+    files:
+      - name: "settings"
+        label: "Pengaturan Identitas"
+        file: "src/content/identity/settings.yml"
+        fields:
+          - { label: "Nama Bisnis", name: "name", widget: "string" }
+          - { label: "Tagline", name: "tagline", widget: "string" }
+          - { label: "Deskripsi", name: "description", widget: "text" }
+          - { label: "Logo", name: "logo", widget: "image" }
+          - { label: "Favicon", name: "favicon", widget: "image" }
+          - label: "Warna Tema"
+            name: "theme_color"
+            widget: "object"
+            fields:
+              - { label: "Warna Utama", name: "primary", widget: "color" }
+              - { label: "Warna Aksen", name: "accent", widget: "color" }
+          - label: "Kontak"
+            name: "contact"
+            widget: "object"
+            fields:
+              - { label: "Nama Kontak", name: "name", widget: "string" }
+              - { label: "Telepon", name: "phone", widget: "string" }
+              - { label: "WhatsApp Link", name: "whatsapp", widget: "string" }
+          - label: "Lokasi"
+            name: "location"
+            widget: "object"
+            fields:
+              - { label: "URL Google Maps", name: "map_url", widget: "string" }
+
   - name: "blog" # Used in routes, e.g., /admin/collections/blog
     label: "Blog" # Used in the UI
     folder: "src/content/blog" # The path to the folder where the documents are stored

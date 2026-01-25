@@ -4,14 +4,16 @@ import ServiceCard from "../components/ServiceCard.astro";
 import BlogCard from "../components/BlogCard.astro";
 import {
   services,
-  siteInfo,
   processSteps,
   testimonials,
   faqs,
   stats,
   educationTips,
 } from "../config";
-import { getCollection } from "astro:content";
+import { getEntry, getCollection } from "astro:content";
+
+const identityEntry = await getEntry('identity', 'settings');
+const identity = identityEntry?.data;
 
 const allBlogPosts = await getCollection("blog");
 const latestPosts = allBlogPosts
@@ -73,7 +75,7 @@ const latestPosts = allBlogPosts
             <span class="w-2 h-2 bg-primary-500 rounded-full animate-pulse"
             ></span>
             <span class="text-sm font-medium text-gray-700"
-              >Layanan Sunat Profesional</span
+              >{identity?.tagline}</span
             >
           </div>
 
@@ -92,8 +94,8 @@ const latestPosts = allBlogPosts
               class="relative z-10 bg-gradient-to-br from-white to-primary-50 rounded-2xl p-3 shadow-lg shadow-primary-500/10 max-w-[280px] mx-auto"
             >
               <img
-                src="/images/heroes/hero-main.png"
-                alt="Bear Boy Sunat"
+                src={identity?.logo || "/logo bearboy.png"}
+                alt={identity?.name}
                 class="w-full mx-auto"
               />
               <!-- Mobile Mascot -->
@@ -101,8 +103,8 @@ const latestPosts = allBlogPosts
                 class="absolute -top-2 -right-2 bg-white rounded-lg p-1.5 shadow-md border border-gray-100"
               >
                 <img
-                  src="/favicon bearboy.png"
-                  alt="Bear Boy"
+                  src={identity?.favicon || "/favicon bearboy.png"}
+                  alt={identity?.name}
                   class="w-8 h-8 object-contain"
                 />
               </div>
@@ -142,9 +144,7 @@ const latestPosts = allBlogPosts
           <p
             class="text-lg md:text-xl text-gray-600 mb-8 max-w-xl mx-auto lg:mx-0 leading-relaxed"
           >
-            Layanan sunat profesional dengan metode modern, ditangani oleh tim
-            medis berpengalaman dan tersertifikasi. Kami mengutamakan
-            kenyamanan, keamanan, dan hasil terbaik untuk Anda.
+            {identity?.description}
           </p>
 
           <!-- CTA Buttons -->
@@ -152,7 +152,7 @@ const latestPosts = allBlogPosts
             class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
           >
             <a
-              href={siteInfo.contact.whatsapp}
+              href={identity?.contact?.whatsapp || "#"}
               target="_blank"
               rel="noopener noreferrer"
               class="group inline-flex items-center justify-center gap-3 bg-primary-500 text-white px-8 py-4 rounded-2xl text-lg font-semibold hover:bg-primary-600 transition-all duration-300 shadow-lg shadow-primary-500/25 hover:shadow-xl hover:shadow-primary-500/30 hover:-translate-y-0.5"
@@ -286,7 +286,7 @@ const latestPosts = allBlogPosts
           >
             <img
               src="/images/heroes/hero-main.png"
-              alt="Selamat Datang di Bear Boy Sunat"
+              alt={`Selamat Datang di ${identity?.name}`}
               class="w-full max-w-md mx-auto drop-shadow-lg animate-float"
             />
           </div>
@@ -296,8 +296,8 @@ const latestPosts = allBlogPosts
             class="absolute -top-4 -right-4 md:top-4 md:-right-8 bg-white rounded-2xl p-3 shadow-xl border border-gray-100 animate-float z-20"
           >
             <img
-              src="/favicon bearboy.png"
-              alt="Bear Boy Mascot"
+              src={identity?.favicon || "/favicon bearboy.png"}
+              alt={`${identity?.name} Mascot`}
               class="w-14 h-14 md:w-16 md:h-16 object-contain"
             />
           </div>
@@ -397,7 +397,7 @@ const latestPosts = allBlogPosts
                   {service.description}
                 </p>
                 <a
-                  href="https://wa.me/6285341053011"
+                  href={identity?.contact?.whatsapp || "#"}
                   target="_blank"
                   rel="noopener noreferrer"
                   class="inline-flex items-center gap-2 bg-primary-500 text-white px-6 py-3 rounded-xl font-semibold hover:bg-primary-600 transition-all duration-300 hover:gap-3 shadow-md hover:shadow-lg"
@@ -445,7 +445,7 @@ const latestPosts = allBlogPosts
           Kenapa Memilih Kami
         </span>
         <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-          Keunggulan <span class="bg-gradient-to-r from-primary-500 to-primary-600 bg-clip-text text-transparent">Bear Boy</span>
+          Keunggulan <span class="bg-gradient-to-r from-primary-500 to-primary-600 bg-clip-text text-transparent">{identity?.name}</span>
         </h2>
         <p class="text-lg text-gray-600 max-w-2xl mx-auto">
           Kami berkomitmen memberikan layanan sunat terbaik dengan standar profesional tinggi
@@ -570,7 +570,7 @@ const latestPosts = allBlogPosts
       <!-- Bottom CTA -->
       <div class="text-center mt-12">
         <a
-          href={siteInfo.contact.whatsapp}
+          href={identity?.contact?.whatsapp || "#"}
           target="_blank"
           rel="noopener noreferrer"
           class="inline-flex items-center gap-3 bg-gradient-to-r from-primary-500 to-primary-600 text-white px-8 py-4 rounded-2xl font-semibold hover:from-primary-600 hover:to-primary-700 transition-all duration-300 shadow-lg shadow-primary-500/30 hover:shadow-xl hover:-translate-y-1"
@@ -828,7 +828,7 @@ const latestPosts = allBlogPosts
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
         <a
-          href={siteInfo.contact.whatsapp}
+          href={identity?.contact?.whatsapp || "#"}
           target="_blank"
           rel="noopener noreferrer"
           class="inline-flex items-center justify-center gap-3 bg-white text-primary-600 px-8 py-4 rounded-2xl text-lg font-semibold hover:bg-gray-100 transition-all duration-300 shadow-xl hover:shadow-2xl"
@@ -839,7 +839,7 @@ const latestPosts = allBlogPosts
           Hubungi via WhatsApp
         </a>
         <a
-          href="tel:+6285341053011"
+          href={`tel:${identity?.contact?.phone?.replace(/\s+/g, '')}`}
           class="inline-flex items-center justify-center gap-2 bg-transparent text-white px-8 py-4 rounded-2xl text-lg font-semibold border-2 border-white/50 hover:bg-white/10 transition-all duration-300"
         >
           <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -970,7 +970,7 @@ const latestPosts = allBlogPosts
                 <div>
                   <p class="text-sm text-gray-500 mb-1">Nama Kontak</p>
                   <p class="text-lg font-semibold text-gray-900">
-                    {siteInfo.contact.name}
+                    {identity?.contact?.name}
                   </p>
                 </div>
               </div>
@@ -997,13 +997,13 @@ const latestPosts = allBlogPosts
                 <div>
                   <p class="text-sm text-gray-500 mb-1">Nomor Telepon</p>
                   <p class="text-lg font-semibold text-gray-900">
-                    {siteInfo.contact.phone}
+                    {identity?.contact?.phone}
                   </p>
                 </div>
               </div>
 
               <a
-                href={siteInfo.contact.whatsapp}
+                href={identity?.contact?.whatsapp || "#"}
                 target="_blank"
                 rel="noopener noreferrer"
                 class="flex items-center justify-center gap-3 bg-primary-500 text-white px-6 py-4 rounded-2xl font-semibold hover:bg-primary-600 transition-all duration-300 shadow-lg shadow-primary-500/25 hover:shadow-xl w-full"
@@ -1029,14 +1029,14 @@ const latestPosts = allBlogPosts
           class="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden"
         >
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3973.66269347898!2d119.4781572913347!3d-5.157860975077638!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dbee3005412aceb%3A0x92bf3816dcfabebd!2sBEARBOY%20SUNAT!5e0!3m2!1sid!2sid!4v1768821137177!5m2!1sid!2sid"
+            src={identity?.location?.map_url || "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3973.66269347898!2d119.4781572913347!3d-5.157860975077638!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dbee3005412aceb%3A0x92bf3816dcfabebd!2sBEARBOY%20SUNAT!5e0!3m2!1sid!2sid!4v1768821137177!5m2!1sid!2sid"}
             width="100%"
             height="100%"
             style="border:0; min-height: 450px;"
             allowfullscreen=""
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
-            title="Lokasi Bear Boy Sunat"></iframe>
+            title={`Lokasi ${identity?.name}`}></iframe>
         </div>
       </div>
     </div>
