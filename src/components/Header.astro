@@ -1,6 +1,7 @@
-import { getEntry } from 'astro:content';
+---
+import { getEntry } from "astro:content";
 
-const identityEntry = await getEntry('identity', 'settings');
+const identityEntry = await getEntry("identity", "settings");
 const identity = identityEntry?.data;
 
 const navItems = [

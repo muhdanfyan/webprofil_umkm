@@ -1,9 +1,11 @@
-import { getEntry } from 'astro:content';
+---
+import { getEntry } from "astro:content";
 
-const identityEntry = await getEntry('identity', 'settings');
+const identityEntry = await getEntry("identity", "settings");
 const identity = identityEntry?.data;
 
 const currentYear = new Date().getFullYear();
+---
 
 <footer class="bg-gray-900 text-white relative overflow-hidden">
   <!-- Top Accent Line -->
@@ -27,7 +29,11 @@ const currentYear = new Date().getFullYear();
       <!-- Brand Section -->
       <div class="md:col-span-2">
         <a href="/" class="inline-block mb-6">
-          <img src={identity?.logo || "/logo bearboy.png"} alt={identity?.name || "Bear Boy Sunat"} class="h-16" />
+          <img
+            src={identity?.logo || "/logo bearboy.png"}
+            alt={identity?.name || "Bear Boy Sunat"}
+            class="h-16"
+          />
         </a>
         <p class="text-gray-400 leading-relaxed mb-6 max-w-md">
           {identity?.description}
@@ -212,7 +218,8 @@ const currentYear = new Date().getFullYear();
       class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4"
     >
       <p class="text-gray-500 text-sm">
-        &copy; {currentYear} {identity?.name || "Bear Boy Sunat"}. Semua hak dilindungi.
+        &copy; {currentYear}
+        {identity?.name || "Bear Boy Sunat"}. Semua hak dilindungi.
       </p>
       <div class="flex items-center gap-2">
         <span class="text-gray-500 text-sm">Dibuat dengan</span>
