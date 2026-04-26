@@ -1,8 +1,8 @@
-/* Bear Boy Sunat - Premium Admin Styling for Decap CMS */
+/* Wiyasa Official - Premium Admin Styling for Decap CMS */
 
 :root {
-    --primary-color: #2ECC9B;
-    --primary-hover: #26b589;
+    --primary-color: #4F46E5;
+    --primary-hover: #4338CA;
     --bg-color: #f8fafc;
     --sidebar-bg: #ffffff;
     --text-dark: #1e293b;
@@ -56,12 +56,12 @@ aside header h1 {
 }
 
 aside header h1::after {
-    content: "Bear Boy Admin";
+    content: "Wiyasa Admin";
     font-size: 1.4rem !important;
     font-weight: 800 !important;
     color: var(--primary-color) !important;
     letter-spacing: -0.03em;
-    background: linear-gradient(135deg, #2ECC9B 0%, #26b589 100%);
+    background: linear-gradient(135deg, #4F46E5 0%, #4338CA 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -84,10 +84,10 @@ aside nav a:hover {
 }
 
 aside nav a[aria-current="page"] {
-    background-color: #ecfdf5 !important;
+    background-color: #EEF2FF !important;
     color: var(--primary-color) !important;
-    border: 1px solid rgba(46, 204, 155, 0.2) !important;
-    box-shadow: 0 4px 12px rgba(46, 204, 155, 0.05) !important;
+    border: 1px solid rgba(79, 70, 229, 0.2) !important;
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.05) !important;
 }
 
 /* Collection Cards - Premium Grid Layout */
@@ -126,7 +126,7 @@ div[class*="grid-card"] [class*="image"] {
 div[class*="Card"]:hover {
     transform: translateY(-8px) !important;
     box-shadow: 0 25px 30px -5px rgba(0, 0, 0, 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.02) !important;
-    border-color: rgba(46, 204, 155, 0.4) !important;
+    border-color: rgba(79, 70, 229, 0.4) !important;
 }
 
 /* Search and Filter Bar */
@@ -148,24 +148,24 @@ div[class*="SearchContainer"] {
 div[class*="SearchContainer"]:focus-within {
     border-color: var(--primary-color) !important;
     background: white !important;
-    box-shadow: 0 0 0 4px rgba(46, 204, 155, 0.1) !important;
+    box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1) !important;
 }
 
 /* Primary Buttons - Modern Shadow */
 button[class*="Button-active"],
 button[class*="Button-default-primary"] {
-    background: linear-gradient(135deg, #2ECC9B 0%, #26b589 100%) !important;
+    background: linear-gradient(135deg, #4F46E5 0%, #4338CA 100%) !important;
     border: none !important;
     border-radius: 0.75rem !important;
     font-weight: 600 !important;
     padding: 0.5rem 1.25rem !important;
-    box-shadow: 0 10px 15px -3px rgba(46, 204, 155, 0.3) !important;
+    box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.3) !important;
     transition: all 0.2s !important;
 }
 
 button[class*="Button-active"]:hover {
     transform: scale(1.02) !important;
-    box-shadow: 0 20px 25px -5px rgba(46, 204, 155, 0.4) !important;
+    box-shadow: 0 20px 25px -5px rgba(79, 70, 229, 0.4) !important;
 }
 
 /* Editor & Control Pane Layout */
@@ -237,7 +237,7 @@ input:focus,
 textarea:focus {
     background-color: #fff !important;
     border-color: var(--primary-color) !important;
-    box-shadow: 0 0 0 4px rgba(46, 204, 155, 0.1) !important;
+    box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1) !important;
 }
 
 /* Preview Pane Styling */
@@ -258,7 +258,7 @@ div[class*="Notification"] {
 /* Netlify Identity Widget Customization (Best effort) */
 #netlify-identity-widget .netlify-identity-menu,
 #netlify-identity-widget .netlify-identity-btn {
-    --primary-color: #2ECC9B !important;
+    --primary-color: #4F46E5 !important;
 }
 
 /* Responsiveness Fixes */
@@ -313,7 +313,7 @@ div[class*="Notification"] {
     }
 
     aside header h1::after {
-        content: "BB";
+        content: "W";
         /* Mascot initials */
         font-size: 1rem !important;
     }
